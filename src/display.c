@@ -19,7 +19,6 @@ void display(){
 	drawWAxes();
 	glRotatef(-90.0, 1.0, 0.0, 0.0);
 	glColor3f(0.0, 0.0, 0.0);
-	glutWireCone(1.0, 2.0, 4, 4);
 
 
 /*Desenha a primeira janela mais a esquerda
@@ -30,7 +29,6 @@ void display(){
 	drawWAxes();
 	glRotatef(-90.0, 1.0, 0.0, 0.0);
 	glColor3f(0.0, 0.0, 0.0);
-	glutWireCone(1.0, 2.0, 4, 4);
 
 
 /*Desenha a janela do meio
@@ -42,7 +40,6 @@ void display(){
 	drawWAxes();
 	glRotatef(-90.0, 1.0, 0.0, 0.0);
 	glColor3f(0.0, 0.0, 0.0);
-	glutWireCone(1.0, 2.0, 4, 4);
 	
 /*Desenah a última janela
  *câmera em y*/
@@ -52,7 +49,6 @@ void display(){
 	drawWAxes();
 	glRotatef(-90.0, 1.0, 0.0, 0.0);
 	glColor3f(0.0, 0.0, 0.0);
-	glutWireCone(1.0, 2.0, 4, 4);
 	
 	/** Dispara os comandos APENAS uma vez */
 	glFlush();

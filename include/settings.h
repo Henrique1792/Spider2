@@ -8,6 +8,7 @@
 #include <GL/glut.h>
 #include <GL/gl.h>
 #include <math.h>
+#include <stdbool.h>
 
 //defines
 #define SCREEN_SIZEX glutGet(GLUT_WINDOW_WIDTH)
