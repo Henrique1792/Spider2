@@ -7,7 +7,6 @@
 #include <math.h>
 #include <GL/glut.h>
 #include <GL/gl.h>
-#include <math.h>
 #include <stdbool.h>
 
 //defines
@@ -15,6 +14,9 @@
 #define SCREEN_SIZEY glutGet(GLUT_WINDOW_HEIGHT)
 #define VIEWPORT_X 800
 #define VIEWPORT_Y 600
+#ifndef M_PI
+#    define M_PI 3.14159265358979323846
+#endif
 
 #define ORTHO_X 300
 #define ORTHO_Y 300

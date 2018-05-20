@@ -1,7 +1,7 @@
 #include "../include/display.h"
 
 int extern width, height;
-
+spider_t extern *spider;
 void cleanScreen(){
 	glClear(GL_COLOR_BUFFER_BIT); 
 	glPointSize(10);
@@ -18,8 +18,8 @@ void display(){
 	gluLookAt(3.0, 2.0, 10.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 	drawWAxes();
 	glRotatef(-90.0, 1.0, 0.0, 0.0);
-	glColor3f(0.0, 0.0, 0.0);
-
+	glColor3f(0.0f, 0.0f, 0.0f);
+	spider_draw(spider);
 
 /*Desenha a primeira janela mais a esquerda
  *câmera em z*/
@@ -29,7 +29,8 @@ void display(){
 	drawWAxes();
 	glRotatef(-90.0, 1.0, 0.0, 0.0);
 	glColor3f(0.0, 0.0, 0.0);
-
+	spider_draw(spider);
+	
 
 /*Desenha a janela do meio
  *câmera em x*/
@@ -40,6 +41,7 @@ void display(){
 	drawWAxes();
 	glRotatef(-90.0, 1.0, 0.0, 0.0);
 	glColor3f(0.0, 0.0, 0.0);
+	spider_draw(spider);
 	
 /*Desenah a última janela
  *câmera em y*/
@@ -49,9 +51,10 @@ void display(){
 	drawWAxes();
 	glRotatef(-90.0, 1.0, 0.0, 0.0);
 	glColor3f(0.0, 0.0, 0.0);
+	spider_draw(spider);
 	
 	/** Dispara os comandos APENAS uma vez */
-	glFlush();
+	glutSwapBuffers();
 
 }
 

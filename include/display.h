@@ -1,6 +1,7 @@
 #ifndef DISPLAY_H_
 #define DISPLAY_H_
 #include "settings.h"
+#include "spider.h"
 
 void display();
 void reshape(int w, int h);
