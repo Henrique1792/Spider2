@@ -39,10 +39,10 @@ void spider_draw(spider_t *spider){
 	//draw Body
 	glPushMatrix();
 		glTranslatef(BODY_RADIUS, -BODY_RADIUS, BODY_RADIUS);
-		glutSolidSphere(BODY_RADIUS, 100, 100);
+		glutSolidSphere(HEAD_RADIUS, 50, 50);
 	glPopMatrix();
 	glPushMatrix();
-		glutSolidSphere(HEAD_RADIUS, 100, 100);
+		glutSolidSphere(BODY_RADIUS, 50, 50);
 	glPopMatrix();
 
 	//draw Legs

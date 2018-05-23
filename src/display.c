@@ -9,49 +9,47 @@ void cleanScreen(){
 
 void display(){
 	cleanScreen();
+	glRotatef(90.0, 1.0, 0.0, 0.0);
 
 	glColor3f(1.0f, 0.0f, 0.0f);
-	/** Desenha a janela mais a direita */
+/*Desenha a janela no canto superior esquerdo
+ *câmera em perspectiva*/
 
-	glViewport(width/2, 0, width/2, height);
+	glViewport(0, height/2, width/2, height/2);
 	glLoadIdentity();
-	gluLookAt(3.0, 2.0, 10.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+	gluLookAt(5.0, 5.0, 10.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 	drawWAxes();
-	glRotatef(-90.0, 1.0, 0.0, 0.0);
 	glColor3f(0.0f, 0.0f, 0.0f);
 	spider_draw(spider);
-
-/*Desenha a primeira janela mais a esquerda
- *câmera em z*/
-	glViewport(0, 2*height/3, width/2, height/3);
-	glLoadIdentity();
-	gluLookAt(0.0, 0.0, 10.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
-	drawWAxes();
-	glRotatef(-90.0, 1.0, 0.0, 0.0);
-	glColor3f(0.0, 0.0, 0.0);
-	spider_draw(spider);
-	
-
-/*Desenha a janela do meio
- *câmera em x*/
-
-	glViewport(0, height/3, width/2, height/3);
-	glLoadIdentity();
-	gluLookAt(10.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
-	drawWAxes();
-	glRotatef(-90.0, 1.0, 0.0, 0.0);
-	glColor3f(0.0, 0.0, 0.0);
-	spider_draw(spider);
-	
-/*Desenah a última janela
+/*Desenha a janela no canto inferior esquerdo
  *câmera em y*/
-	glViewport(0, 0, width/2, height/3);
+	glViewport(0, 0, width/2, height/2);
 	glLoadIdentity();
 	gluLookAt(0.0, 10.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0);
 	drawWAxes();
-	glRotatef(-90.0, 1.0, 0.0, 0.0);
 	glColor3f(0.0, 0.0, 0.0);
 	spider_draw(spider);
+
+/** Desenha a janela no canto superior direito
+ *  câmera em perspectiva*/
+
+	glViewport(width/2, 0, width/2, height/2);
+	glLoadIdentity();
+	gluLookAt(10.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+	drawWAxes();
+	glColor3f(0.0, 0.0, 0.0);
+	spider_draw(spider);
+
+/*Desenha janela no canto inferior direito
+ *câmera em z*/
+	glViewport(width/2, height/2, width/2, height/2);
+	glLoadIdentity();
+	gluLookAt(0.0, 0.0, 10.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+	drawWAxes();
+	glColor3f(0.0, 0.0, 0.0);
+	spider_draw(spider);
+	
+
 	
 	/** Dispara os comandos APENAS uma vez */
 	glutSwapBuffers();
