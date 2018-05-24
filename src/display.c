@@ -31,8 +31,7 @@ void display(){
 	spider_draw(spider);
 
 /** Desenha a janela no canto superior direito
- *  câmera em perspectiva*/
-
+ *câmera em x*/
 	glViewport(width/2, 0, width/2, height/2);
 	glLoadIdentity();
 	gluLookAt(10.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
@@ -51,7 +50,6 @@ void display(){
 	
 
 	
-	/** Dispara os comandos APENAS uma vez */
 	glutSwapBuffers();
 
 }

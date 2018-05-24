@@ -38,7 +38,7 @@ void spider_destroy(spider_t *spider){
 void spider_draw(spider_t *spider){
 	//draw Body
 	glPushMatrix();
-		glTranslatef(BODY_RADIUS, -BODY_RADIUS, BODY_RADIUS);
+		glTranslatef(BODY_RADIUS, 0.0, BODY_RADIUS);
 		glutSolidSphere(HEAD_RADIUS, 50, 50);
 	glPopMatrix();
 	glPushMatrix();
@@ -49,9 +49,10 @@ void spider_draw(spider_t *spider){
 	//1
 	glColor3f(1.0f, 0.0f, 1.0f);
 	glPushMatrix();
-		glTranslatef(-HEAD_RADIUS, HEAD_RADIUS, -HEAD_RADIUS);
-		drawLine(-BODY_RADIUS,-BODY_RADIUS, HEAD_RADIUS,
-				-3*JOINT_SIZE, 3*JOINT_SIZE, -HEAD_RADIUS);
+		drawLine(BODY_RADIUS, HEAD_RADIUS, BODY_RADIUS,
+				JOINT_SIZE, JOINT_SIZE, JOINT_SIZE);
+		drawLine(JOINT_SIZE, JOINT_SIZE, JOINT_SIZE,
+				FOOT_SIZE, 0.0, FOOT_SIZE);
 	glPopMatrix();
 	
 	//2
