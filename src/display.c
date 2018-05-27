@@ -14,44 +14,41 @@ void display(){
 	glColor3f(1.0f, 0.0f, 0.0f);
 /*Desenha a janela no canto superior esquerdo
  *câmera em perspectiva*/
-
-	glViewport(0, height/2, width/2, height/2);
+	// Diminuir o 1-H
+	glViewport(0, height/2 - 20, width/2, height/2);
 	glLoadIdentity();
-	gluLookAt(5.0, 5.0, 10.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+	gluLookAt(2.5, 2.5, 5.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 	drawWAxes();
 	glColor3f(0.0f, 0.0f, 0.0f);
 	spider_draw(spider);
 /*Desenha a janela no canto inferior esquerdo
  *câmera em y*/
-	glViewport(0, 0, width/2, height/2);
+	glViewport(0, 20, width/2, height/2);
 	glLoadIdentity();
-	gluLookAt(0.0, 10.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0);
+	gluLookAt(0.0, 5.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0);
 	drawWAxes();
 	glColor3f(0.0, 0.0, 0.0);
 	spider_draw(spider);
 
-/** Desenha a janela no canto superior direito
+/** Desenha a janela no canto inferior direito
  *câmera em x*/
-	glViewport(width/2, 0, width/2, height/2);
+	glViewport(width/2, 20, width/2, height/2);
 	glLoadIdentity();
-	gluLookAt(10.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+	gluLookAt(5.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 	drawWAxes();
 	glColor3f(0.0, 0.0, 0.0);
 	spider_draw(spider);
 
 /*Desenha janela no canto inferior direito
  *câmera em z*/
-	glViewport(width/2, height/2, width/2, height/2);
+	glViewport(width/2, height/2 - 20, width/2, height/2);
 	glLoadIdentity();
-	gluLookAt(0.0, 0.0, 10.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+	gluLookAt(0.0, 0.0, 5.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 	drawWAxes();
 	glColor3f(0.0, 0.0, 0.0);
 	spider_draw(spider);
 	
-
-	
 	glutSwapBuffers();
-
 }
 
 
