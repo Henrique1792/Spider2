@@ -12,15 +12,17 @@
 #define JOINT_SIZE 0.55f
 #define FOOT_SIZE 0.75f
 
-#define THETA_JOINT_1 15.0f
-#define THETA_JOINT_3 50.0f
-#define THETA_JOINT_5 85.0f
-#define THETA_JOINT_7 120.0f
+#define THETA_JOINT_1 1.50f
+#define THETA_JOINT_3 1.75f
+#define THETA_JOINT_5 -1.50f
+#define THETA_JOINT_7 -1.50f
 
-#define THETA_FOOT_1  10.0f
-#define THETA_FOOT_3  40.0f
-#define THETA_FOOT_5  80.0f
-#define THETA_FOOT_7  130.0f
+#define THETA_FOOT_1  1.0f
+#define THETA_FOOT_3  3.0f
+#define THETA_FOOT_5  -1.5f
+#define THETA_FOOT_7  -3.0f
+
+#define LEG_HEIGHT 1.5f
 
 typedef struct spider_t{
     vec3 pos, target;

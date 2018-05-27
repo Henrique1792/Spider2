@@ -23,14 +23,15 @@ void init(){
 }
 
 
-
 int main(int argc, char *argv[]){
 	glutInit(&argc, argv);
 	init();
 
 		glutDisplayFunc(display);
 		glutReshapeFunc(reshape);
-
+		glutSpecialFunc(arrowKeypressed);
+ 		glutSpecialUpFunc(arrowKeyReleased);
+		 
 	glutMainLoop();
 	spider_destroy(spider);
 }

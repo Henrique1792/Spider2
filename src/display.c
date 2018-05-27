@@ -7,6 +7,59 @@ void cleanScreen(){
 	glPointSize(10);
 }
 
+int isLeftKeyPressed = 0;
+int isRightKeyPressed = 0;
+int isUpKeyPressed = 0;
+int isDownKeyPressed = 0;
+
+void arrowKeypressed(int key, int x, int y){
+	
+	switch (key) {
+ 		case GLUT_KEY_LEFT:
+			isLeftKeyPressed = 1;
+			if (isLeftKeyPressed == 1) {
+				printf("LEFT: %d", key);
+			}
+			break;
+		case GLUT_KEY_RIGHT:
+			isRightKeyPressed = 1;
+			if (isRightKeyPressed == 1) {
+				printf("RIGHT: %d", key);
+			}
+			break;
+		case GLUT_KEY_UP:
+			isUpKeyPressed = 1;
+			if (isUpKeyPressed == 1) {
+				printf("UP: %d", key);
+			}
+			break;
+		case GLUT_KEY_DOWN:
+			isDownKeyPressed = 1;
+			if (isDownKeyPressed == 1) {
+				printf("DOWN: %d", key);
+			}
+			break;
+ 	}
+}
+
+void arrowKeyReleased(int key, int x, int y){
+	
+	switch (key) {
+ 		case GLUT_KEY_LEFT:
+  			isLeftKeyPressed = 0;
+  			break;
+ 		case GLUT_KEY_RIGHT:
+  			isRightKeyPressed = 0;
+  			break;
+		case GLUT_KEY_UP:
+  			isUpKeyPressed = 0;
+  			break;
+		case GLUT_KEY_DOWN:
+  			isDownKeyPressed = 0;
+  			break;
+	}
+}
+
 void display(){
 	cleanScreen();
 	glRotatef(90.0, 1.0, 0.0, 0.0);
@@ -51,7 +104,6 @@ void display(){
 	glutSwapBuffers();
 }
 
-
 void reshape(int w, int h){
 	width=w, height=h;
 
@@ -60,7 +112,6 @@ void reshape(int w, int h){
 	gluPerspective(65.0, (GLfloat)w/(GLfloat)h, 1.0, 20.0);
 	glMatrixMode(GL_MODELVIEW);
 }
-
 
 void drawAxes(float *basePoint, float *i, float *j, float *k){
 	float currentColor[4];
