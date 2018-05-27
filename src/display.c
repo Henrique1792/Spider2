@@ -17,7 +17,7 @@ void display(){
 
 	glViewport(0, height/2, width/2, height/2);
 	glLoadIdentity();
-	gluLookAt(5.0, 5.0, 10.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+	gluLookAt(5.0, 4.0, 5.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 	drawWAxes();
 	glColor3f(0.0f, 0.0f, 0.0f);
 	spider_draw(spider);
