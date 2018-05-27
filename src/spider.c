@@ -63,6 +63,29 @@ void spider_draw(spider_t *spider){
 					 0.0, LEG_HEIGHT*cos(30*DEG2RAD),spider->spider_J4);
 			drawLine(0.0, LEG_HEIGHT*cos(30*DEG2RAD),spider->spider_J4, 
 					0.0, 0.0, spider->spider_F4);
+		
+		//5
+			drawLine(HEAD_RADIUS*cos(30*DEG2RAD), 0.0, 0.0, 
+					spider->spider_J5, LEG_HEIGHT*cos(30*DEG2RAD), 0.0);
+			drawLine(spider->spider_J5, LEG_HEIGHT*cos(30*DEG2RAD), 0.0,
+					spider->spider_F5, 0.0, 0.0);
+		//6
+			drawLine(0.0, 0.0, HEAD_RADIUS*cos(30*DEG2RAD), 
+					 0.0, LEG_HEIGHT*cos(30*DEG2RAD),spider->spider_J6);
+			drawLine(0.0, LEG_HEIGHT*cos(30*DEG2RAD),spider->spider_J6, 
+					0.0, 0.0, spider->spider_F6);
+
+		//7
+			drawLine(HEAD_RADIUS*cos(60*DEG2RAD), 0.0, 0.0, 
+					spider->spider_J7, LEG_HEIGHT*cos(60*DEG2RAD), 0.0);
+			drawLine(spider->spider_J7, LEG_HEIGHT*cos(60*DEG2RAD), 0.0,
+					spider->spider_F7, 0.0, 0.0);
+		//8
+			drawLine(0.0, 0.0, HEAD_RADIUS*cos(60*DEG2RAD), 
+					 0.0, LEG_HEIGHT*cos(60*DEG2RAD),spider->spider_J8);
+			drawLine(0.0, LEG_HEIGHT*cos(60*DEG2RAD),spider->spider_J8, 
+					0.0, 0.0, spider->spider_F8);
+
 	glPopMatrix();
 	glPushMatrix();
 		glTranslatef(0.0, HEAD_RADIUS, 0.0);

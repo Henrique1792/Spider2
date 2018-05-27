@@ -14,13 +14,13 @@
 
 #define THETA_JOINT_1 1.50f
 #define THETA_JOINT_3 1.75f
-#define THETA_JOINT_5 8.5f
-#define THETA_JOINT_7 12.0f
+#define THETA_JOINT_5 -1.50f
+#define THETA_JOINT_7 -1.50f
 
 #define THETA_FOOT_1  1.0f
 #define THETA_FOOT_3  3.0f
-#define THETA_FOOT_5  8.0f
-#define THETA_FOOT_7  13.0f
+#define THETA_FOOT_5  -1.5f
+#define THETA_FOOT_7  -3.0f
 
 #define LEG_HEIGHT 1.5f
 
