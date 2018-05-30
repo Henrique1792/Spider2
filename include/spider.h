@@ -25,9 +25,8 @@
 #define LEG_HEIGHT 1.5f
 
 typedef struct spider_t{
-    vec3 pos, target;
-    GLfloat rotate, scale;
-    bool hasTarget;
+    vec3 pos;
+    GLfloat direction;
 
     float spider_J1, spider_F1;
     float spider_J2, spider_F2;
@@ -37,27 +36,15 @@ typedef struct spider_t{
     float spider_J6, spider_F6;
     float spider_J7, spider_F7;
     float spider_J8, spider_F8;
+    
 }spider_t;
 
-void spider_init(spider_t *spider, vec3 *initial, GLfloat rotation, GLfloat scale);
-spider_t *spider_create(vec3 *initial, GLfloat rotation, GLfloat scale);
+spider_t *spider_create(vec3 *initial, GLfloat direction);
+void spider_init(spider_t *spider, vec3 *initial, GLfloat direction);
 void spider_destroy(spider_t *spider);
 void spider_draw(spider_t *spider);
-void spider_setX(spider_t* spider, GLfloat x);
-void spider_setY(spider_t* spider, GLfloat y);
-void spider_setZ(spider_t* spider, GLfloat z);
-void spider_setPosition(spider_t* spider, GLfloat x, GLfloat y, GLfloat z);
-void spider_setRotation(spider_t* spider, GLfloat rotation);
-void spider_setScale(spider_t* spider, GLfloat scale);
 
-void spider_drawOrigin(bool draw);
-bool spider_getDrawOrigin(void);
-
-void spider_rotate(spider_t* spider, GLfloat delta);
-void spider_scale(spider_t* spider, GLfloat delta);
-
-void spider_setTarget(spider_t* spider, float x, GLfloat y, GLfloat z);
-void spider_update(spider_t* spider, float deltaTime);
-
+void spider_move(spider_t* spider, GLfloat x, GLfloat y, GLfloat z);
+void spider_direction(spider_t* spider, GLfloat direction);
 
 #endif

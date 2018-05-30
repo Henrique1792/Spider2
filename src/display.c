@@ -1,16 +1,16 @@
 #include "../include/display.h"
 
-int extern width, height;
 spider_t extern *spider;
-void cleanScreen(){
-	glClear(GL_COLOR_BUFFER_BIT); 
-	glPointSize(10);
-}
-
+int extern width, height;
 int isLeftKeyPressed = 0;
 int isRightKeyPressed = 0;
 int isUpKeyPressed = 0;
 int isDownKeyPressed = 0;
+
+void cleanScreen(){
+	glClear(GL_COLOR_BUFFER_BIT); 
+	glPointSize(10);
+}
 
 void arrowKeypressed(int key, int x, int y){
 	
@@ -18,25 +18,29 @@ void arrowKeypressed(int key, int x, int y){
  		case GLUT_KEY_LEFT:
 			isLeftKeyPressed = 1;
 			if (isLeftKeyPressed == 1) {
-				printf("LEFT: %d", key);
+				spider_direction(spider, 5.0f);
+				glutPostRedisplay();
 			}
 			break;
 		case GLUT_KEY_RIGHT:
 			isRightKeyPressed = 1;
 			if (isRightKeyPressed == 1) {
-				printf("RIGHT: %d", key);
+				spider_direction(spider, -5.0f);
+				glutPostRedisplay();
 			}
 			break;
 		case GLUT_KEY_UP:
 			isUpKeyPressed = 1;
 			if (isUpKeyPressed == 1) {
-				printf("UP: %d", key);
+				spider_move(spider, sin(M_PI * spider->direction / 180) * 0.5, 0.0f, cos(M_PI * spider->direction / 180) * 0.5);
+				glutPostRedisplay();
 			}
 			break;
 		case GLUT_KEY_DOWN:
 			isDownKeyPressed = 1;
 			if (isDownKeyPressed == 1) {
-				printf("DOWN: %d", key);
+				spider_move(spider, -(sin(M_PI * spider->direction / 180) * 0.5), 0.0f, -(cos(M_PI * spider->direction / 180) * 0.5));
+				glutPostRedisplay();
 			}
 			break;
  	}
@@ -63,45 +67,66 @@ void arrowKeyReleased(int key, int x, int y){
 void display(){
 	cleanScreen();
 	glRotatef(90.0, 1.0, 0.0, 0.0);
-
 	glColor3f(1.0f, 0.0f, 0.0f);
-/*Desenha a janela no canto superior esquerdo
- *câmera em perspectiva*/
-	// Diminuir o 1-H
+
+	/* Desenha a janela no canto superior esquerdo
+ 	 * câmera em perspectiva*/
 	glViewport(0, height/2 - 20, width/2, height/2);
 	glLoadIdentity();
 	gluLookAt(2.5, 2.5, 5.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 	drawWAxes();
-	glColor3f(0.0f, 0.0f, 0.0f);
-	spider_draw(spider);
-/*Desenha a janela no canto inferior esquerdo
- *câmera em y*/
+	glPushMatrix();
+		glColor3f(0.0f, 0.0f, 0.0f);
+		glTranslatef(spider->pos.cd[0], 0.0f, spider->pos.cd[2]);
+		glRotatef(spider->direction - 44.0f, 0.0f, 1.0f, 0.0f);
+		spider_draw(spider);
+	glPopMatrix();
+	glutSwapBuffers();
+
+	/* Desenha a janela no canto inferior esquerdo
+	 * câmera em y*/
 	glViewport(0, 20, width/2, height/2);
 	glLoadIdentity();
 	gluLookAt(0.0, 5.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0);
 	drawWAxes();
-	glColor3f(0.0, 0.0, 0.0);
-	spider_draw(spider);
+	glPushMatrix();
+		glColor3f(0.0f, 0.0f, 0.0f);
+		glTranslatef(spider->pos.cd[0], 0.0f, spider->pos.cd[2]);
+		glRotatef(spider->direction - 44.0f, 0.0f, 1.0f, 0.0f);
+		spider_draw(spider);
+	glPopMatrix();
+	glutSwapBuffers();
 
-/** Desenha a janela no canto inferior direito
- *câmera em x*/
+	/* Desenha a janela no canto inferior direito
+ 	 * câmera em x*/
 	glViewport(width/2, 20, width/2, height/2);
 	glLoadIdentity();
 	gluLookAt(5.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 	drawWAxes();
-	glColor3f(0.0, 0.0, 0.0);
-	spider_draw(spider);
+	glPushMatrix();
+		glColor3f(0.0f, 0.0f, 0.0f);
+		glTranslatef(spider->pos.cd[0], 0.0f, spider->pos.cd[2]);
+		glRotatef(spider->direction - 44.0f, 0.0f, 1.0f, 0.0f);
+		spider_draw(spider);
+	glPopMatrix();
+	glutSwapBuffers();
 
-/*Desenha janela no canto inferior direito
- *câmera em z*/
+	/* Desenha janela no canto inferior direito
+ 	 * câmera em z*/
 	glViewport(width/2, height/2 - 20, width/2, height/2);
 	glLoadIdentity();
 	gluLookAt(0.0, 0.0, 5.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 	drawWAxes();
-	glColor3f(0.0, 0.0, 0.0);
-	spider_draw(spider);
-	
+	glPushMatrix();
+		glColor3f(0.0f, 0.0f, 0.0f);
+		glTranslatef(spider->pos.cd[0], 0.0f, spider->pos.cd[2]);
+		glRotatef(spider->direction - 44.0f, 0.0f, 1.0f, 0.0f);
+		spider_draw(spider);
+	glPopMatrix();
 	glutSwapBuffers();
+	
+	// Debug
+	// printf("%f %f %f", spider->pos.cd[0], spider->pos.cd[1], spider->pos.cd[2]);
 }
 
 void reshape(int w, int h){

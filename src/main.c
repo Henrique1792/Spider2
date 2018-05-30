@@ -18,7 +18,7 @@ void init(){
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
-	spider=spider_create(init, 0.0, 0.0);
+	spider=spider_create(init, 0.0f);
 	free(init);
 }
 
