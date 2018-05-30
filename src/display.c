@@ -32,7 +32,16 @@ void arrowKeypressed(int key, int x, int y){
 		case GLUT_KEY_UP:
 			isUpKeyPressed = 1;
 			if (isUpKeyPressed == 1) {
-				spider_move(spider, sin(M_PI * spider->direction / 180) * 0.5, 0.0f, cos(M_PI * spider->direction / 180) * 0.5);
+				spider_move(spider, sin(M_PI * spider->direction / 180) * 0.5, 0.0f, cos(M_PI * spider->direction / 180) * 0.5);		
+
+				if (spider->front_up == 0)
+				{
+					spider->front_up = 1;
+				}
+				else {
+					spider->front_up = 0;
+				}
+
 				glutPostRedisplay();
 			}
 			break;
@@ -40,6 +49,15 @@ void arrowKeypressed(int key, int x, int y){
 			isDownKeyPressed = 1;
 			if (isDownKeyPressed == 1) {
 				spider_move(spider, -(sin(M_PI * spider->direction / 180) * 0.5), 0.0f, -(cos(M_PI * spider->direction / 180) * 0.5));
+
+				if (spider->front_up == 0)
+				{
+					spider->front_up = 1;
+				}
+				else {
+					spider->front_up = 0;
+				}
+
 				glutPostRedisplay();
 			}
 			break;

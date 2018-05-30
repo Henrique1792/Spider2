@@ -3,6 +3,7 @@
 #include <math.h>
 
 static bool gDrawOrigin = false;
+int count = 1;
 
 spider_t *spider_create(vec3 *initial, GLfloat direction){
 	spider_t *rt=(spider_t *)malloc(sizeof(spider_t));
@@ -17,75 +18,72 @@ void spider_init(spider_t *spider, vec3 *initial, GLfloat direction){
 	}
 
 	spider->direction = direction;
+	spider->front_up= 0;
 	//set leg values
 
-	spider->spider_J1 = THETA_JOINT_1; spider->spider_F1 = THETA_FOOT_1;
-	spider->spider_J2 = THETA_JOINT_1; spider->spider_F2 = THETA_FOOT_1;
-	spider->spider_J3 = THETA_JOINT_3; spider->spider_F3 = THETA_FOOT_3;
-	spider->spider_J4 = THETA_JOINT_3; spider->spider_F4 = THETA_FOOT_3;
-	spider->spider_J5 = THETA_JOINT_5; spider->spider_F5 = THETA_FOOT_5;
-	spider->spider_J6 = THETA_JOINT_5; spider->spider_F6 = THETA_FOOT_5;
-	spider->spider_J7 = THETA_JOINT_7; spider->spider_F7 = THETA_FOOT_7;
-	spider->spider_J8 = THETA_JOINT_7; spider->spider_F8 = THETA_FOOT_7;
-
+	spider->spider_JX = THETA_JOINT_X; 
+	spider->spider_JZ = THETA_JOINT_Z;
+    spider->spider_FX = THETA_FOOT_X;
+	spider->spider_FZ = THETA_FOOT_Z;
 }
 
 void spider_draw(spider_t *spider){
 
-	glPushMatrix();
+	glPushMatrix();	
 		// Draw Head	
 		glTranslatef(BODY_RADIUS, HEAD_RADIUS, BODY_RADIUS);
 		glutSolidSphere(HEAD_RADIUS, 50, 50);
-		glRotatef(spider->direction, 0.0f, 1.0f, 0.0f);
-	glPopMatrix();
+	glPopMatrix();	
 
 	glPushMatrix();
-
 		glTranslatef(BODY_RADIUS, HEAD_RADIUS, BODY_RADIUS);
+		glRotatef(44.0f, 0.0f, -1.0f, 0.0f);
+		// Draw legs	
+		int i = 0;
+		for(i = 0; i < 4; i++) {
 
-		//DrawLegs
-		//1
-		drawLine(HEAD_RADIUS, 0.0, 0.0, 
-				spider->spider_J1, LEG_HEIGHT, 0.0);
-		drawLine(spider->spider_J1, LEG_HEIGHT, 0.0,
-				spider->spider_F1, 0.0, 0.0);
-		//2
-		drawLine(0.0, 0.0, HEAD_RADIUS, 
-				0.0, LEG_HEIGHT,spider->spider_J2);
-		drawLine(0.0, LEG_HEIGHT,spider->spider_J2, 
-				0.0, 0.0, spider->spider_F2);
-		//3
-		drawLine(HEAD_RADIUS*cos(30*DEG2RAD), 0.0, 0.0, 
-			spider->spider_J3, LEG_HEIGHT*cos(30*DEG2RAD), 0.0);
-		drawLine(spider->spider_J3, LEG_HEIGHT*cos(30*DEG2RAD), 0.0,
-			spider->spider_F3, 0.0, 0.0);
-		//4
-		drawLine(0.0, 0.0, HEAD_RADIUS*cos(30*DEG2RAD), 
-			0.0, LEG_HEIGHT*cos(30*DEG2RAD),spider->spider_J4);
-		drawLine(0.0, LEG_HEIGHT*cos(30*DEG2RAD),spider->spider_J4, 
-			0.0, 0.0, spider->spider_F4);
-		//5
-		drawLine(HEAD_RADIUS*cos(30*DEG2RAD), 0.0, 0.0, 
-			spider->spider_J5, LEG_HEIGHT*cos(30*DEG2RAD), 0.0);
-		drawLine(spider->spider_J5, LEG_HEIGHT*cos(30*DEG2RAD), 0.0,
-			spider->spider_F5, 0.0, 0.0);
-		//6
-		drawLine(0.0, 0.0, HEAD_RADIUS*cos(30*DEG2RAD), 
-			0.0, LEG_HEIGHT*cos(30*DEG2RAD),spider->spider_J6);
-		drawLine(0.0, LEG_HEIGHT*cos(30*DEG2RAD),spider->spider_J6, 
-			0.0, 0.0, spider->spider_F6);
-		//7
-		drawLine(HEAD_RADIUS*cos(60*DEG2RAD), 0.0, 0.0, 
-			spider->spider_J7, LEG_HEIGHT*cos(60*DEG2RAD), 0.0);
-		drawLine(spider->spider_J7, LEG_HEIGHT*cos(60*DEG2RAD), 0.0,
-			spider->spider_F7, 0.0, 0.0);
-		//8
-		drawLine(0.0, 0.0, HEAD_RADIUS*cos(60*DEG2RAD), 
-			0.0, LEG_HEIGHT*cos(60*DEG2RAD),spider->spider_J8);
-		drawLine(0.0, LEG_HEIGHT*cos(60*DEG2RAD),spider->spider_J8, 
-			0.0, 0.0, spider->spider_F8);
+			// printf("%d\n", count);
+			
+			float inc = INCREASE * i;
+
+			if (i == 0) {
+				
+				if (spider->front_up == 0) {
+					drawLine(0.0, 0.0, 0.0, spider->spider_JX - inc + 0.2, LEG_HEIGHT + UP_INCREASE, spider->spider_JZ);
+					drawLine(spider->spider_JX - inc + 0.2, LEG_HEIGHT + UP_INCREASE, spider->spider_JZ, spider->spider_FX - inc + 0.2, UP_INCREASE, spider->spider_FZ);
+					drawLine(0.0, 0.0, 0.0, spider->spider_JX - inc + 0.2, LEG_HEIGHT - UP_INCREASE, -spider->spider_JZ);
+					drawLine(spider->spider_JX - inc + 0.2, LEG_HEIGHT - UP_INCREASE, -spider->spider_JZ, spider->spider_FX - inc + 0.2, 0.0, -spider->spider_FZ);	
+				}
+				else {
+					drawLine(0.0, 0.0, 0.0, spider->spider_JX - inc - 0.2, LEG_HEIGHT - UP_INCREASE, spider->spider_JZ);
+					drawLine(spider->spider_JX - inc - 0.2, LEG_HEIGHT - UP_INCREASE, spider->spider_JZ, spider->spider_FX - inc - 0.2, 0.0, spider->spider_FZ);
+					drawLine(0.0, 0.0, 0.0, spider->spider_JX - inc - 0.2, LEG_HEIGHT + UP_INCREASE, -spider->spider_JZ);
+					drawLine(spider->spider_JX - inc - 0.2, LEG_HEIGHT + UP_INCREASE, -spider->spider_JZ, spider->spider_FX - inc - 0.2, UP_INCREASE, -spider->spider_FZ);	
+				}
+			}
+			else {
+				if (count == i) {
+					drawLine(0.0, 0.0, 0.0, spider->spider_JX - inc  + 0.2, LEG_HEIGHT + UP_INCREASE, spider->spider_JZ);
+					drawLine(spider->spider_JX - inc  + 0.2, LEG_HEIGHT + UP_INCREASE, spider->spider_JZ, spider->spider_FX - inc + 0.2, UP_INCREASE, spider->spider_FZ);
+					drawLine(0.0, 0.0, 0.0, spider->spider_JX - inc  - 0.2, LEG_HEIGHT + UP_INCREASE, -spider->spider_JZ);
+					drawLine(spider->spider_JX - inc - 0.2, LEG_HEIGHT + UP_INCREASE, -spider->spider_JZ, spider->spider_FX - inc - 0.2, UP_INCREASE, -spider->spider_FZ);	
+				}
+				else {
+					drawLine(0.0, 0.0, 0.0, spider->spider_JX - inc - 0.2, LEG_HEIGHT , spider->spider_JZ);
+					drawLine(spider->spider_JX - inc  - 0.2, LEG_HEIGHT, spider->spider_JZ, spider->spider_FX - inc  - 0.2, 0.0, spider->spider_FZ);
+					drawLine(0.0, 0.0, 0.0, spider->spider_JX - inc + 0.2, LEG_HEIGHT, -spider->spider_JZ);
+					drawLine(spider->spider_JX - inc  + 0.2, LEG_HEIGHT, -spider->spider_JZ, spider->spider_FX - inc  + 0.2, 0.0, -spider->spider_FZ);	
+				}
+			}
+		}
+		count++;
+
+		if (count > 3){
+			count = 1;
+		}
+
 	glPopMatrix();
-	
+
 	// // Draw Body
 	glPushMatrix();
 		glTranslatef(0.0, HEAD_RADIUS, 0.0);
