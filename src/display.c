@@ -128,6 +128,7 @@ void display(){
 	glutSwapBuffers();
 	// Debug
 	// printf("%f %f %f", spider->pos.cd[0], spider->pos.cd[1], spider->pos.cd[2]);
+	// printf("%f\n", spider->direction);
 }
 
 void reshape(int w, int h){
