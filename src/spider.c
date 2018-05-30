@@ -97,30 +97,6 @@ void spider_draw(spider_t *spider){
 		// 			0.0, 0.0, spider->spider_F8);
 
 	//draw Legs
-	
-	//2
-	glPushMatrix();
-	glPopMatrix();
-
-	//3
-	glPushMatrix();
-	glPopMatrix();
-
-	//4
-	glPushMatrix();
-	glPopMatrix();
-	//5
-	glPushMatrix();
-	glPopMatrix();
-	//6
-	glPushMatrix();
-	glPopMatrix();
-	//7
-	glPushMatrix();
-	glPopMatrix();
-	//8
-	glPushMatrix();
-	glPopMatrix();
 }
 
 void spider_move(spider_t* spider, GLfloat x, GLfloat y, GLfloat z){

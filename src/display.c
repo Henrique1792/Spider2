@@ -73,21 +73,36 @@ void display(){
  	 * câmera em perspectiva*/
 	glViewport(0, height/2 - 20, width/2, height/2);
 	glLoadIdentity();
-	gluLookAt(2.5, 2.5, 5.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+	gluLookAt(5.5, 2.5, 5.5, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 	drawWAxes();
+	drawGrid();
 	glPushMatrix();
 		glColor3f(0.0f, 0.0f, 0.0f);
 		glTranslatef(spider->pos.cd[0], 0.0f, spider->pos.cd[2]);
 		glRotatef(spider->direction - 44.0f, 0.0f, 1.0f, 0.0f);
 		spider_draw(spider);
 	glPopMatrix();
-	glutSwapBuffers();
+	
 
 	/* Desenha a janela no canto inferior esquerdo
 	 * câmera em y*/
 	glViewport(0, 20, width/2, height/2);
 	glLoadIdentity();
-	gluLookAt(0.0, 5.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0);
+	gluLookAt(0.0, 11.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0);
+	drawWAxes();
+	drawGrid();
+		glColor3f(0.0f, 0.0f, 0.0f);
+		glTranslatef(spider->pos.cd[0], 0.0f, spider->pos.cd[2]);
+		glRotatef(spider->direction - 44.0f, 0.0f, 1.0f, 0.0f);
+		spider_draw(spider);
+	glPopMatrix();
+	
+
+	/* Desenha janela no canto superior direito
+ 	 * câmera em z*/
+	glViewport(width/2, height/2 - 20, width/2, height/2);
+	glLoadIdentity();
+	gluLookAt(0.0, 0.0, 5.5, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 	drawWAxes();
 	glPushMatrix();
 		glColor3f(0.0f, 0.0f, 0.0f);
@@ -95,13 +110,13 @@ void display(){
 		glRotatef(spider->direction - 44.0f, 0.0f, 1.0f, 0.0f);
 		spider_draw(spider);
 	glPopMatrix();
-	glutSwapBuffers();
+
 
 	/* Desenha a janela no canto inferior direito
  	 * câmera em x*/
 	glViewport(width/2, 20, width/2, height/2);
 	glLoadIdentity();
-	gluLookAt(5.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+	gluLookAt(5.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 	drawWAxes();
 	glPushMatrix();
 		glColor3f(0.0f, 0.0f, 0.0f);
@@ -109,22 +124,8 @@ void display(){
 		glRotatef(spider->direction - 44.0f, 0.0f, 1.0f, 0.0f);
 		spider_draw(spider);
 	glPopMatrix();
-	glutSwapBuffers();
-
-	/* Desenha janela no canto inferior direito
- 	 * câmera em z*/
-	glViewport(width/2, height/2 - 20, width/2, height/2);
-	glLoadIdentity();
-	gluLookAt(0.0, 0.0, 5.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
-	drawWAxes();
-	glPushMatrix();
-		glColor3f(0.0f, 0.0f, 0.0f);
-		glTranslatef(spider->pos.cd[0], 0.0f, spider->pos.cd[2]);
-		glRotatef(spider->direction - 44.0f, 0.0f, 1.0f, 0.0f);
-		spider_draw(spider);
-	glPopMatrix();
-	glutSwapBuffers();
 	
+	glutSwapBuffers();
 	// Debug
 	// printf("%f %f %f", spider->pos.cd[0], spider->pos.cd[1], spider->pos.cd[2]);
 }
@@ -180,4 +181,18 @@ void drawWAxes(){
 	k[0] = k[1] = 0.0;
 	k[2] = 5.0;
 	drawAxes(basePoint, i, j, k);
+}
+
+void drawGrid() {
+	
+	glBegin(GL_LINES);
+		for(int i=0;i<=10;i++) {
+    	if (i==0) { glColor3f(.6,.3,.3); } else { glColor3f(.25,.25,.25); };
+    	glVertex3f(i,0,0);
+    	glVertex3f(i,0,10);
+    	if (i==0) { glColor3f(.3,.3,.6); } else { glColor3f(.25,.25,.25); };
+    	glVertex3f(0,0,i);
+    	glVertex3f(10,0,i);
+	}
+	glEnd();
 }
